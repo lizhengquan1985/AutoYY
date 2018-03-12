@@ -62,6 +62,16 @@ namespace AutoHuobi.Data
 
         static Dictionary<string, AnalyzeData> analyzeDataDic = new Dictionary<string, AnalyzeData>();
 
+        public static AnalyzeData GetAnalyzeData(string coin)
+        {
+            if (analyzeDataDic.ContainsKey(coin))
+            {
+                return analyzeDataDic[coin];
+            }
+            return null;
+        }
+
+
         public static void InitCoinData(string coin)
         {
             if (!analyzeDataDic.ContainsKey(coin))
@@ -76,7 +86,7 @@ namespace AutoHuobi.Data
             InitKline(coin, "1min");
             InitKline(coin, "5min");
             InitKline(coin, "15min");
-            InitKline(coin, "30min");
+            //InitKline(coin, "30min");
 
             InitFlexlist(coin, (decimal)1.02);
             InitFlexlist(coin, (decimal)1.025);
@@ -145,11 +155,11 @@ namespace AutoHuobi.Data
 
             if (analyzeDataDic[coin].LowestPrice.ContainsKey(period))
             {
-                analyzeDataDic[coin].LowestPrice[period] = high;
+                analyzeDataDic[coin].LowestPrice[period] = low;
             }
             else
             {
-                analyzeDataDic[coin].LowestPrice.Add(period, high);
+                analyzeDataDic[coin].LowestPrice.Add(period, low);
             }
         }
 
@@ -235,7 +245,7 @@ namespace AutoHuobi.Data
             }
             else
             {
-                analyzeDataDic[coin].NowLeanPercent.Add(percent.ToString(), flexPointList);
+                analyzeDataDic[coin].FlexPoint.Add(percent.ToString(), flexPointList);
             }
         }
     }
