@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AutoHuobi.Data;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace AutoHuobi
 {
     public class HbAnalyzeApi
     {
-        public ResponseKline kline(string symbol, string period, int size = 300)
+        public static ResponseKline kline(string symbol, string period, int size = 300)
         {
             var url = $"{HbConfig.baseUrl}/history/kline";
             url += $"?symbol={symbol}&period={period}&size={size}";
