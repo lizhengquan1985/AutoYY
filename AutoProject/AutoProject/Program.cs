@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutoProject
@@ -21,6 +22,23 @@ namespace AutoProject
             logger = LogManager.GetLogger(typeof(Program));
             logger.Error("-------------------------- begin ---------------------------------");
 
+            while (true)
+            {
+                logFlex();
+                Thread.Sleep(1000 * 60 * 60);
+            }
+            
+            // 排序
+            // 1. 最近5天偏高,0.95
+            // 2. 最近5天偏低,0.05
+            // 3. 拐点, 是否普遍拐点,
+            // 4. 最近1小时的速度
+
+            Console.ReadLine();
+        }
+
+        private static void logFlex()
+        {
             Console.WriteLine($"{DateTime.Now}");
             foreach (var coin in CoinDataPools.coins)
             {
@@ -54,7 +72,7 @@ namespace AutoProject
             }
 
             logger.Error($"--->             1.03  1.035   1.04  1.045   1.05  1.055   1.06   1.07");
-            int[] countArr = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0};
+            int[] countArr = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
             foreach (var coin in countData.Keys)
             {
                 var countStr = "";
@@ -68,30 +86,25 @@ namespace AutoProject
                 logger.Error($"--->  {coin.PadLeft(6, ' ')}  {countStr}");
             }
             var countStrPrint = "";
-            foreach(var c in countArr)
+            foreach (var c in countArr)
             {
                 countStrPrint += c.ToString().PadLeft(7, ' ');
             }
             logger.Error($"--->          {countStrPrint}");
-            // 排序
-            // 1. 最近5天偏高,0.95
-            // 2. 最近5天偏低,0.05
-            // 3. 拐点, 是否普遍拐点,
-            // 4. 最近1小时的速度
-
-            Console.ReadLine();
+            logger.Error($"");
+            logger.Error($"");
         }
 
         private static int log(string coin, AnalyzeData analyzeData, string percent)
         {
-            logger.Error($"--->  {coin}  {percent}");
-            foreach (var item in analyzeData.FlexPoint[percent])
-            {
-                logger.Error($"isHigh:{item.isHigh}   open:{item.open} date:{Utils.GetDateById(item.id).ToString("yyyy-MM-dd HH:mm:ss")}");
-            }
-            logger.Error($"");
-            logger.Error($"");
-            logger.Error($"");
+            //logger.Error($"--->  {coin}  {percent}");
+            //foreach (var item in analyzeData.FlexPoint[percent])
+            //{
+            //    logger.Error($"isHigh:{item.isHigh}   open:{item.open} date:{Utils.GetDateById(item.id).ToString("yyyy-MM-dd HH:mm:ss")}");
+            //}
+            //logger.Error($"");
+            //logger.Error($"");
+            //logger.Error($"");
             return analyzeData.FlexPoint[percent].Count;
         }
     }
