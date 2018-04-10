@@ -53,7 +53,7 @@ namespace AutoHuobi.Data
             "btc","bch","eth","etc","ltc",
             "eos","xrp","omg","dash","zec",
             // 创新
-            "trx","mds","ela",
+            "ont","trx","mds","ela",
             "itc","nas","ruff","zil","dta",
             "let","ht","theta","hsr","qtum",
             "snt","iost","neo","storj","gnt",
