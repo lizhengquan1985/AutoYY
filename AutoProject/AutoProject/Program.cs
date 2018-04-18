@@ -61,6 +61,8 @@ namespace AutoProject
                     countData.Add(coin, new Dictionary<string, int>());
                 }
 
+                countData[coin].Add("1.015", log(coin, analyzeData, "1.015"));
+                countData[coin].Add("1.02", log(coin, analyzeData, "1.02"));
                 countData[coin].Add("1.03", log(coin, analyzeData, "1.03"));
                 countData[coin].Add("1.035", log(coin, analyzeData, "1.035"));
                 countData[coin].Add("1.04", log(coin, analyzeData, "1.04"));
@@ -71,7 +73,7 @@ namespace AutoProject
                 countData[coin].Add("1.07", log(coin, analyzeData, "1.07"));
             }
 
-            logger.Error($"--->             1.03  1.035   1.04  1.045   1.05  1.055   1.06   1.07");
+            logger.Error($"--->           1.015  1.02  1.03  1.035   1.04  1.045   1.05  1.055   1.06   1.07");
             int[] countArr = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
             foreach (var coin in countData.Keys)
             {
@@ -97,11 +99,11 @@ namespace AutoProject
 
         private static int log(string coin, AnalyzeData analyzeData, string percent)
         {
-            //logger.Error($"--->  {coin}  {percent}");
-            //foreach (var item in analyzeData.FlexPoint[percent])
-            //{
-            //    logger.Error($"isHigh:{item.isHigh}   open:{item.open} date:{Utils.GetDateById(item.id).ToString("yyyy-MM-dd HH:mm:ss")}");
-            //}
+            logger.Error($"--->  {coin}  {percent}");
+            foreach (var item in analyzeData.FlexPoint[percent])
+            {
+                logger.Error($"isHigh:{item.isHigh}   open:{item.open} date:{Utils.GetDateById(item.id).ToString("yyyy-MM-dd HH:mm:ss")}");
+            }
             //logger.Error($"");
             //logger.Error($"");
             //logger.Error($"");

@@ -88,6 +88,8 @@ namespace AutoHuobi.Data
             InitKline(coin, "15min");
             //InitKline(coin, "30min");
 
+            InitFlexlist(coin, (decimal)1.015);
+            InitFlexlist(coin, (decimal)1.02);
             InitFlexlist(coin, (decimal)1.03);
             InitFlexlist(coin, (decimal)1.035);
             InitFlexlist(coin, (decimal)1.04);
